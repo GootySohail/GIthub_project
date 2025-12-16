@@ -25,10 +25,12 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=${{ secrets.SONAR_ORG }}
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          sonar.projectKey: Node.js
+          sonar.organization: SonarQube
+          sonar.sources: .
+          sonar.language: js
+          sonar.sourceEncoding: UTF-8
+
 
       - name: Build Docker Image
         run: docker build -t node-demo .
