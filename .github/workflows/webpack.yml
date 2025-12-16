@@ -19,11 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run SonarCloud Scan
+      - name: Run SonarQube Scan
         uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectKey: GithubProject        # Replace with your SonarCloud project key
-          organization: gootysohail          # Replace with your SonarCloud organization key
-          projectBaseDir: .                   # or relative path if your code is not in root
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
