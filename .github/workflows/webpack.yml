@@ -27,3 +27,14 @@ jobs:
         npm install
     - name: Run APP Test
       run: node app.js &
+    - name: Sonarqube Scan
+    uses: SonarSource/sonarcloud-github-action@v2
+    env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    with:
+          args: >
+            -Dsonar.organization=${{ secrets.SONAR_ORG }}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+
+             - name: Build Docker Image
+    run: docker build -t node-demo .
