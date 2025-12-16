@@ -11,7 +11,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: SonarCloud Scan
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # or your Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectKey: GithubProject        # Replace with your SonarCloud project key
+          organization: gootysohail          # Replace with your SonarCloud organization key
+          projectBaseDir: .                   # or relative path if your code is not in root
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
