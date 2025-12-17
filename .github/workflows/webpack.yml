@@ -49,8 +49,10 @@ jobs:
       - name: Pull docker image
         run: docker pull ${{vars.DOCKER_USERNAME}}/node-app:latest
 
-      - uses: homoluctus/gitrivy@v1.0.0
+      - name: Trivy Image Scan
+        uses: aquasecurity/trivy-action@0.33.1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          image: ${{vars.DOCKER_USERNAME}}/node-app:latest
+          image-ref: ${{ vars.DOCKER_USERNAME }}/node-app:latest
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
         
