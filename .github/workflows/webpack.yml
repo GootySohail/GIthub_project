@@ -2,11 +2,13 @@ name: Node CI with Sonar
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   sonar:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -14,17 +16,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # or your Node.js version
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v2.1.0 
-    env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        
+        uses: SonarSource/sonarqube-scan-action@v2.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@0.33.1
         with:
