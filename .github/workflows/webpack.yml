@@ -53,6 +53,5 @@ jobs:
         uses: aquasecurity/trivy-action@0.33.1
         with:
           image-ref: ${{ vars.DOCKER_USERNAME }}/node-app:latest
-          severity: 'CRITICAL,HIGH'
           exit-code: '1'
         
