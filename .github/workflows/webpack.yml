@@ -26,7 +26,7 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         -name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@0.33.1
-    with:
-        scan-type: 'fs'
-        scan-ref: '.'
-        trivy-config: trivy.yaml
+        with:
+         scan-type: 'fs'
+         scan-ref: '.'
+         trivy-config: trivy.yaml
